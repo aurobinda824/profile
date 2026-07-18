@@ -1,0 +1,322 @@
+/* ===========================
+        DESIGN TOKENS
+=========================== */
+
+:root {
+    --bg: #f4f5f7;
+    --glass: rgba(255, 255, 255, 0.72);
+    --glass-strong: rgba(255, 255, 255, 0.86);
+    --text: #1a1a1a;
+    --muted: #555;
+    --ring: rgba(120, 140, 255, 0.55);
+    --chip: rgba(0, 0, 0, 0.045);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --duration-main: 0.5s;
+    --duration-pop: 0.38s;
+    --duration-ring: 14s;
+    --duration-ring-hover: 6s;
+    --button-size: 76px;
+    --button-offset: 48px;
+    --button-translate-x: calc(50vw - 86px);
+    --button-translate-y: calc(50vh - 86px);
+    --shadow-rest: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    --shadow-active: 0 18px 40px rgba(0, 0, 0, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+    --shadow-panel: 0 20px 60px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    --blur-glass: 28px;
+    --blur-panel: 30px;
+    --radius-full: 50%;
+    --radius-window: 32px;
+    --radius-chip: 13px;
+    --panel-gap: clamp(24px, 4vw, 56px);
+}
+
+html[data-theme="dark"] {
+    --bg: #0f1116;
+    --glass: rgba(21, 24, 31, 0.78);
+    --glass-strong: rgba(21, 24, 31, 0.92);
+    --text: #f3f5f7;
+    --muted: #b7bec9;
+    --ring: rgba(118, 145, 255, 0.72);
+    --chip: rgba(255, 255, 255, 0.06);
+    --shadow-rest: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    --shadow-active: 0 18px 40px rgba(0, 0, 0, 0.46), inset 0 1px 2px rgba(255, 255, 255, 0.08);
+    --shadow-panel: 0 20px 60px rgba(0, 0, 0, 0.42), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg);
+    font-family: var(--font-sans);
+}
+
+button {
+    font: inherit;
+}
+
+main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    isolation: isolate;
+}
+
+main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.95), transparent 65%);
+    pointer-events: none;
+}
+
+html[data-theme="dark"] main::before {
+    background: radial-gradient(circle at top, rgba(86, 104, 170, 0.32), transparent 65%);
+}
+
+.circle-button {
+    position: relative;
+    width: var(--button-size);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: var(--radius-full);
+    background: var(--glass);
+    color: var(--text);
+    cursor: pointer;
+    overflow: visible;
+    backdrop-filter: blur(var(--blur-glass));
+    -webkit-backdrop-filter: blur(var(--blur-glass));
+    box-shadow: var(--shadow-rest);
+    transform-origin: center center;
+    will-change: transform, opacity;
+    transition: transform var(--duration-main) var(--ease-out), box-shadow var(--duration-pop) var(--ease-out), opacity var(--duration-pop) var(--ease-spring);
+}
+
+.circle-button::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: var(--radius-full);
+    background: conic-gradient(
+        from 0deg,
+        rgba(122, 142, 255, 0.78) 0 72deg,
+        transparent 72deg 124deg,
+        rgba(122, 142, 255, 0.78) 124deg 196deg,
+        transparent 196deg 248deg,
+        rgba(122, 142, 255, 0.78) 248deg 320deg,
+        transparent 320deg 360deg
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 2px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 2px));
+    pointer-events: none;
+    animation: ring-spin var(--duration-ring) linear infinite;
+    transform: translateZ(0);
+}
+
+.circle-button:hover::before {
+    opacity: 0.95;
+}
+
+.circle-button:active::before {
+    opacity: 1;
+}
+
+.circle-button:focus-visible {
+    outline: 3px solid rgba(120, 140, 255, 0.45);
+    outline-offset: 4px;
+}
+
+.circle-button--profile {
+    position: absolute;
+    left: var(--button-offset);
+    top: var(--button-offset);
+    transform: translate3d(var(--button-translate-x), var(--button-translate-y), 0) scale(1.7105);
+    z-index: 50;
+}
+
+.circle-button--profile.open {
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+.circle-button--profile.active {
+    box-shadow: var(--shadow-active);
+}
+
+.circle-button--profile:active {
+    box-shadow: var(--shadow-active);
+}
+
+.text,
+.icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.text {
+    transform: translate(-50%, -50%);
+    font-size: 23px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.icon {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0;
+    color: #777;
+}
+
+.icon svg {
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+}
+
+.circle-button.morph .text {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+.circle-button.morph .icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#menu {
+    position: absolute;
+    left: var(--button-offset);
+    top: 140px;
+    bottom: 40px;
+    width: var(--button-size);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 30;
+}
+
+.menu-btn {
+    position: relative;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.7);
+    pointer-events: none;
+}
+
+.menu-btn.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.menu-btn:hover {
+    transform: scale(1.08);
+}
+
+.menu-btn.show:hover {
+    transform: translateY(0) scale(1.08);
+}
+
+.menu-btn.active {
+    transform: translateY(0) scale(1.15);
+    box-shadow: var(--shadow-active);
+}
+
+.menu-btn.active::before {
+    opacity: 1;
+}
+
+#sectionWindow {
+    position: absolute;
+    left: clamp(130px, 14vw, 156px);
+    top: 40px;
+    right: 40px;
+    bottom: 40px;
+    padding: var(--panel-gap);
+    border-radius: var(--radius-window);
+    background: var(--glass);
+    backdrop-filter: blur(var(--blur-panel));
+    -webkit-backdrop-filter: blur(var(--blur-panel));
+    box-shadow: var(--shadow-panel);
+    opacity: 0;
+    transform: scale(0.97);
+    transform-origin: left center;
+    overflow: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    transition: opacity var(--duration-main) var(--ease-out), transform var(--duration-main) var(--ease-spring);
+    pointer-events: none;
+}
+
+#sectionWindow.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.window-title {
+    margin-bottom: 24px;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    color: var(--text);
+}
+
+.window-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.window-detail span {
+    display: block;
+    width: fit-content;
+    padding: 9px 16px;
+    border-radius: var(--radius-chip);
+    background: var(--chip);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+@keyframes ring-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .circle-button,
+    .text,
+    .icon,
+    .menu-btn,
+    #sectionWindow,
+    .circle-button::before {
+        transition-duration: 0.001s !important;
+        animation-duration: 0.001s !important;
+    }
+}
