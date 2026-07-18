@@ -1,0 +1,228 @@
+.section-view--profile {
+    display: grid;
+    gap: 20px;
+}
+
+.profile-console {
+    display: grid;
+    gap: 24px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.profile-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(240px, 0.9fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.profile-intro {
+    min-width: 0;
+}
+
+.profile-intro .section-kicker {
+    display: inline-block;
+    margin-right: 14px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 14px;
+    padding: 9px 14px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.68);
+    color: var(--text);
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    transition: transform var(--duration-pop) var(--ease-out), background var(--duration-pop) var(--ease-out), border-color var(--duration-pop) var(--ease-out);
+    vertical-align: middle;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+}
+
+.theme-toggle__icon {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.theme-toggle__text {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.profile-name {
+    margin: 10px 0 8px;
+    font-size: 42px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+}
+
+.profile-role {
+    margin-bottom: 16px;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.profile-description {
+    max-width: 760px;
+    color: var(--muted);
+    line-height: 1.75;
+}
+
+.profile-status {
+    display: grid;
+    gap: 12px;
+}
+
+.status-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: var(--glass);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    color: var(--text);
+    font-size: 14px;
+}
+
+.status-card.available {
+    color: var(--text);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #1eb954;
+    box-shadow: 0 0 10px rgba(30, 185, 84, 0.45);
+    flex: 0 0 auto;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.profile-card {
+    padding: 18px;
+    border-radius: 16px;
+    background: var(--glass);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+html[data-theme="dark"] .theme-toggle {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .profile-card,
+html[data-theme="dark"] .metric,
+html[data-theme="dark"] .status-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme="dark"] .status-card {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.profile-card h3 {
+    margin-bottom: 14px;
+    color: var(--text);
+    font-size: 16px;
+}
+
+.profile-card ul {
+    margin: 0;
+    padding-left: 18px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+.profile-small {
+    margin-top: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.profile-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+}
+
+.metric {
+    padding: 18px;
+    border-radius: 16px;
+    text-align: center;
+    background: var(--glass);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.metric-value {
+    display: block;
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--text);
+}
+
+.metric-label {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.section-view--profile .section-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.section-view--profile .section-pills span {
+    display: inline-flex;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--chip);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+@media (max-width: 820px) {
+    .profile-header {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-name {
+        font-size: 34px;
+    }
+}

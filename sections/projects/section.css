@@ -1,0 +1,161 @@
+.section-view--projects {
+  display: grid;
+  gap: 24px;
+}
+
+.section-view--projects .section-heading {
+  display: grid;
+  gap: 10px;
+}
+
+.section-view--projects .section-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section-view--projects h2 {
+  font-size: 30px;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.section-view--projects .section-description {
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 720px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.project-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 18px;
+  background: var(--glass);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+html[data-theme="dark"] .section-view--projects .project-card,
+html[data-theme="dark"] .section-view--projects .project-difficulty,
+html[data-theme="dark"] .section-view--projects .project-type,
+html[data-theme="dark"] .section-view--projects .project-year,
+html[data-theme="dark"] .section-view--projects .project-card p,
+html[data-theme="dark"] .section-view--projects .project-card h3,
+html[data-theme="dark"] .section-view--projects .project-highlights {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .section-view--projects .project-card,
+html[data-theme="dark"] .section-view--projects .project-difficulty {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme="dark"] .section-view--projects .project-card,
+html[data-theme="dark"] .section-view--projects .project-card p,
+html[data-theme="dark"] .section-view--projects .project-card h3,
+html[data-theme="dark"] .section-view--projects .project-type,
+html[data-theme="dark"] .section-view--projects .project-year,
+html[data-theme="dark"] .section-view--projects .project-difficulty span,
+html[data-theme="dark"] .section-view--projects .project-difficulty strong,
+html[data-theme="dark"] .section-view--projects .project-highlights {
+  color: var(--text);
+}
+
+.project-card.featured {
+  grid-column: 1 / -1;
+  border-left: 3px solid rgba(0, 0, 0, 0.18);
+}
+
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.project-difficulty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: fit-content;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: var(--chip);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.project-difficulty span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project-difficulty strong {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.project-type,
+.project-year {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project-card h3 {
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.project-card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.project-card .section-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-card .section-pills span {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--chip);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.project-highlights {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  .project-card.featured {
+    grid-column: auto;
+  }
+}

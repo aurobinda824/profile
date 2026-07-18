@@ -1,0 +1,63 @@
+.section-view--skills {
+  display: grid;
+  gap: 20px;
+}
+
+.section-view--skills .section-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.section-view--skills .section-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section-view--skills h2 {
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.section-view--skills .skill-card + .skill-card {
+  padding-top: 26px;
+  margin-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+html[data-theme="dark"] .section-view--skills .skill-card + .skill-card {
+  border-top-color: rgba(255, 255, 255, 0.15);
+}
+
+html[data-theme="dark"] .section-view--skills .section-kicker,
+html[data-theme="dark"] .section-view--skills h2,
+html[data-theme="dark"] .section-view--skills .section-description,
+html[data-theme="dark"] .section-view--skills h3,
+html[data-theme="dark"] .section-view--skills p,
+html[data-theme="dark"] .section-view--skills .section-pills span {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .section-view--skills .section-pills span {
+  background: var(--chip);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section-view--skills .section-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.section-view--skills .section-pills span {
+  display: inline-flex;
+  padding: 9px 16px;
+  border-radius: var(--radius-chip);
+  background: var(--chip);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
