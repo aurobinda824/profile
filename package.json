@@ -1,9 +1,0 @@
-{
-  "name": "portfolio",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Portfolio landing with an animated start button, spawning menu, and section window.",
-  "scripts": {
-    "start": "node server.js"
-  }
-}
