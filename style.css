@@ -5,10 +5,8 @@
 :root {
     --bg: #f4f5f7;
     --glass: rgba(255, 255, 255, 0.72);
-    --glass-strong: rgba(255, 255, 255, 0.86);
     --text: #1a1a1a;
     --muted: #555;
-    --ring: rgba(120, 140, 255, 0.55);
     --chip: rgba(0, 0, 0, 0.045);
     --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -16,7 +14,6 @@
     --duration-main: 0.5s;
     --duration-pop: 0.38s;
     --duration-ring: 14s;
-    --duration-ring-hover: 6s;
     --button-size: 76px;
     --button-offset: 48px;
     --button-translate-x: calc(50vw - 86px);
@@ -35,10 +32,8 @@
 html[data-theme="dark"] {
     --bg: #0f1116;
     --glass: rgba(21, 24, 31, 0.78);
-    --glass-strong: rgba(21, 24, 31, 0.92);
     --text: #f3f5f7;
     --muted: #b7bec9;
-    --ring: rgba(118, 145, 255, 0.72);
     --chip: rgba(255, 255, 255, 0.06);
     --shadow-rest: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.05);
     --shadow-active: 0 18px 40px rgba(0, 0, 0, 0.46), inset 0 1px 2px rgba(255, 255, 255, 0.08);
@@ -156,10 +151,7 @@ html[data-theme="dark"] main::before {
     transform: translate3d(0, 0, 0) scale(1);
 }
 
-.circle-button--profile.active {
-    box-shadow: var(--shadow-active);
-}
-
+.circle-button--profile.active,
 .circle-button--profile:active {
     box-shadow: var(--shadow-active);
 }
@@ -275,31 +267,6 @@ html[data-theme="dark"] main::before {
     pointer-events: auto;
 }
 
-.window-title {
-    margin-bottom: 24px;
-    font-size: 36px;
-    font-weight: 700;
-    letter-spacing: -0.2px;
-    color: var(--text);
-}
-
-.window-detail {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.window-detail span {
-    display: block;
-    width: fit-content;
-    padding: 9px 16px;
-    border-radius: var(--radius-chip);
-    background: var(--chip);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--muted);
-}
-
 @keyframes ring-spin {
     from {
         transform: rotate(0deg);
@@ -318,5 +285,67 @@ html[data-theme="dark"] main::before {
     .circle-button::before {
         transition-duration: 0.001s !important;
         animation-duration: 0.001s !important;
+    }
+}
+
+/* On phones the navigation becomes a compact top toolbar once Start is opened. */
+@media (max-width: 600px) {
+    :root {
+        /* Five controls plus four equal gaps fit across the phone width. */
+        --button-size: clamp(40px, calc((100vw - 64px) / 5), 52px);
+        --button-offset: 16px;
+        /* This is also the gap between Profile and the first menu button. */
+        --mobile-menu-gap: min(16px, max(8px, calc((100vw - (var(--button-offset) * 2) - (var(--button-size) * 5)) / 4)));
+    }
+
+    .circle-button--profile {
+        /* The unopened Start button stays centered, regardless of its mobile size. */
+        transform: translate3d(
+            calc(50vw - var(--button-offset) - (var(--button-size) / 2)),
+            calc(50vh - var(--button-offset) - (var(--button-size) / 2)),
+            0
+        ) scale(1.7105);
+    }
+
+    .circle-button--profile.open {
+        /* Keep the profile control at the top-left after the Start animation. */
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    #menu {
+        left: calc(var(--button-offset) + var(--button-size) + var(--mobile-menu-gap));
+        right: var(--button-offset);
+        top: var(--button-offset);
+        bottom: auto;
+        width: auto;
+        height: var(--button-size);
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: var(--mobile-menu-gap);
+    }
+
+    .menu-btn {
+        flex: 0 0 var(--button-size);
+        font-size: clamp(8px, 2.3vw, 10px);
+        transform: translateX(-10px) scale(0.7);
+    }
+
+    .menu-btn.show {
+        transform: translateX(0) scale(1);
+    }
+
+    .menu-btn.show:hover,
+    .menu-btn.active {
+        transform: translateX(0) scale(1.08);
+    }
+
+    #sectionWindow {
+        left: 16px;
+        top: calc(var(--button-offset) + var(--button-size) + 24px);
+        right: 16px;
+        bottom: 16px;
+        padding: clamp(18px, 5vw, 28px);
+        border-radius: 24px;
+        transform-origin: center top;
     }
 }

@@ -117,10 +117,6 @@ html[data-theme="dark"] .section-view--contact .section-pills span {
   line-height: 1.65;
 }
 
-.section-view--contact .contact-details {
-  grid-template-columns: 1fr;
-}
-
 .section-view--contact .contact-card {
   display: grid;
   grid-template-columns: 42px 1fr;

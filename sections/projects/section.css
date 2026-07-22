@@ -45,16 +45,6 @@
 }
 
 html[data-theme="dark"] .section-view--projects .project-card,
-html[data-theme="dark"] .section-view--projects .project-difficulty,
-html[data-theme="dark"] .section-view--projects .project-type,
-html[data-theme="dark"] .section-view--projects .project-year,
-html[data-theme="dark"] .section-view--projects .project-card p,
-html[data-theme="dark"] .section-view--projects .project-card h3,
-html[data-theme="dark"] .section-view--projects .project-highlights {
-  color: var(--text);
-}
-
-html[data-theme="dark"] .section-view--projects .project-card,
 html[data-theme="dark"] .section-view--projects .project-difficulty {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
